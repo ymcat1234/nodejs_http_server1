@@ -12,7 +12,9 @@ function start(route, handle) {
     }
 
     //http.createServer(onRequest).listen(8888);
-    http.createServer(onRequest).listen(80);
+    var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+    http.createServer(onRequest).listen(port, ip);
     console.log("Server has started.");
 }
 
